@@ -14,11 +14,6 @@ int main(){
             }
         }
 
-        if(n == 1){
-            cout << "NO" <<endl;
-            break;
-        }
-
         unordered_map<int,int> mpp;
         for(int i = 0;i<n;i++){
             for(int j = 0;j <n;j++){
@@ -26,36 +21,20 @@ int main(){
             }
         }
         
-        int flag = 1;
+        bool flag = true;
 
-        int max_occur = -1;
-        for(auto it:mpp){
-            if(it.second > max_occur){
-                max_occur = it.second;
-            }
-        }
-
-        int sum = 0, same = 0;
         for(auto it : mpp){
-            if(it.second != max_occur){
-                sum += it.second;
-            }
-
-            if(it.second == max_occur){
-                same++;
+            if(it.second > n*(n-1)){
+                flag = false;
+                break;
             }
         }
 
-        if(sum == 0 && same > 1){
+        if(flag){
             cout << "YES" << endl;
         }
-
-        else if(sum >= n){
-            cout << "YES" << endl;
-        }
-        else {
+        else{
             cout << "NO" << endl;
         }
-
     }
 }
